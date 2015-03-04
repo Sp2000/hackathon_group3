@@ -5,16 +5,6 @@
 	
 	$errors=[];
 
-	function rawToChecklistData($raw)
-	{
-		$d=explode(chr(13),str_replace(array(chr(13).chr(10),chr(10)),chr(13),$raw));
-		foreach($d as $key=>$val)
-		{
-			$d[$key]=explode(chr(9),$val);
-		}
-		return $d;
-	}
-
 	function deleteChecklist($p)
 	{
 		$conn=isset($p['conn']) ? $p['conn'] : null;
@@ -64,7 +54,7 @@
 		$code=$_POST["checklist_code"];
 		
 		$raw='';
-		if (isset($_FILES["checklist_file"]["tmp_name"]))
+		if (isset($_FILES["checklist_file"]["tmp_name"]) && file_exists($_FILES["checklist_file"]["tmp_name"]))
 		{
 			$raw.=file_get_contents($_FILES["checklist_file"]["tmp_name"]);
 		}
@@ -74,7 +64,7 @@
 		}
 
 		$delete_existing=isset($_POST["delete_existing"]) ? $_POST["delete_existing"]=='on' : false;
-		$lines=rawToChecklistData($raw);
+		$lines=rawToStructured($raw);
 		$conn=connectDb();
 		if ($delete_existing) deleteChecklist(['conn'=>$conn,'code'=>$code]);
 		$res=saveChecklist(['conn'=>$conn,'code'=>$code,'lines'=>$lines]);
@@ -121,10 +111,10 @@ select text file (one record per line):
 	}
 
 ?>
-
-<p>
-<a href="index.php">index</a>
+<p class="nav-menu">
+	<a href="index.php">index</a>
 </p>
+
 
 </body>
 </html>

@@ -5,11 +5,20 @@
 <script src="js/jquery-1.11.2.min.js"></script>
 <link href="css/stylesheet.css" media="all" rel="stylesheet" />
 <style>
+.nav-menu a {
+	font-size:0.8em;
+}
 .paginator {
 	font-size:0.8em;
 }
 .paginator .page {
 	padding:0 5px 0 5px;
+}
+.file-list {
+	background-color:#eee;
+	color:black;
+	font-family:monospace;
+	font-size:0.9em;
 }
 </style>
 <title>Hackathon March 2015</title>

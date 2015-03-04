@@ -67,10 +67,14 @@
 	include_once 'includes/html-header.php';
 
 ?>
-
+<p class="nav-menu">
+	<a href="index.php">index</a>
+</p>    
 <p>
 	<h4>Checklist <?php echo '"',$code, '" (',$results->totalcount,' records)'; ?></h4>
-    
+    <p class="nav-menu">
+        <a href="addmatch.php?code=<?php echo $code; ?>">add match data</a>
+    </p>  
 <?php
 
 	print_paginator($results);
@@ -105,9 +109,7 @@
 	print_paginator($results);
 
 ?>
-<p>
-	<a href="index.php">index</a>
-</p>
+
 
 </body>
 </html>

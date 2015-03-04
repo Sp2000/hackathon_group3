@@ -18,21 +18,20 @@
 ?>
 
 <p>
-	uploaded checklists:
+	<h2>Uploaded checklists:</h2>
     <ul>
 <?php
 
 	foreach((array)$lists as $key=>$val)
 	{
-		echo '<li>','<a href="browse.php?code='.$val['checklist_code'].'">',$val['checklist_code'],'</a>',' (', $val['total'],' species)','</li>';
+		echo '<li>','<a href="browse.php?code='.$val['checklist_code'].'">',$val['checklist_code'],'</a>',' (', $val['total'],' records)','</li>';
 	}
 ?>
 	</ul>
 </p>
-
-<p>
+<p class="nav-menu">
 	<a href="upload.php">upload a checklist</a>
-</p>
+</p> 
 
 </div>
 </body>
