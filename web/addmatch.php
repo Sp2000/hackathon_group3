@@ -110,7 +110,7 @@
 			$d=$s->fetch();
 		}
 		
-		$obj->id=$d['id'];
+		$obj->checklist_species_id=$d['id'];
 		$obj->name=$d['scientific_name'];
 
 		//echo '<pre>';print_r($obj);echo '</pre>';
@@ -118,6 +118,46 @@
 		return $obj;
 
 	}
+	
+	function deletePreviousMatches($p)
+	{
+		$conn=isset($p['conn']) ? $p['conn'] : null;
+		$provider=isset($p['provider']) ? $p['provider'] : null;
+		$s = $conn->prepare('delete from checklist_matches where match_provider = :provider');
+		$s->bindValue(':provider', $provider, PDO::PARAM_STR);
+		$s->execute();
+	}
+
+	function saveTaxonMatch($p)
+	{
+		$conn=isset($p['conn']) ? $p['conn'] : null;
+		$provider=isset($p['provider']) ? $p['provider'] : null;
+		$taxon=isset($p['taxon']) ? $p['taxon'] : null;
+		$keycolumn=isset($p['keycolumn']) ? $p['keycolumn'] : null;
+		$line=isset($p['line']) ? $p['line'] : null;
+
+		$match_provider_key=isset($line[$keycolumn]) ? $line[$keycolumn]: null;
+		$match_value='1'; // presence in the file is considered a 'true' value
+		
+		$s = $conn->prepare('insert into checklist_matches (checklist_species_id,match_provider,match_provider_key,match_value) values (:checklist_species_id,:provider,:match_provider_key,:match_value)');
+		$s->bindValue(':checklist_species_id', $taxon->checklist_species_id, PDO::PARAM_INT);
+		$s->bindValue(':provider', $provider, PDO::PARAM_STR);
+		$s->bindValue(':match_provider_key', $match_provider_key, PDO::PARAM_STR);
+		$s->bindValue(':match_value', $match_value, PDO::PARAM_STR);
+		
+		if ($s->execute())
+		{
+			return true;
+		}
+		else 
+		{
+			//$d=$s->errorInfo();
+			//$errors[]=$d[2];
+			//$j++;
+		}
+
+	}
+	
 	
 	$code=@$_REQUEST["code"];
 	
@@ -133,7 +173,7 @@
 			
 			if (is_null($content))
 			{
-				// is JSON, we assume it's not GBIF
+				// isn't JSON, we assume it's not GBIF
 				$content=rawToStructured($raw);
 
 				$provider=extractProvider(['conn'=>$conn,'line'=>$content[0]]);
@@ -149,21 +189,41 @@
 				}
 				else
 				{
+					set_time_limit(600);
+					deletePreviousMatches(['conn'=>$conn,'provider'=>$provider]);
+					$added=$failed=0;
 					foreach($content as $line)
 					{
 						$taxon=resolveTaxon(['conn'=>$conn,'code'=>$code,'line'=>$line]);
-						if ($taxon->id)
+						//echo '<pre>';print_r($taxon);echo '</pre>';
+						if (isset($taxon->checklist_species_id))
 						{
-							$res=saveTaxonMatch(['conn'=>$conn,'provider'=>$provider,'taxon'=>$taxon,'keycolumn'=>$keycolumn]);
+							if(saveTaxonMatch(['conn'=>$conn,'provider'=>$provider,'taxon'=>$taxon,'line'=>$line,'keycolumn'=>$keycolumn]))
+							{
+								$added++;
+							}
+							else
+							{
+								$failed++;
+							}
+						}
+						else
+						{
 						}
 					}
+					$res=array($added,$failed);
 				}
 				
 			}
 			else
 			{
 				// is JSON, we assume it's GBIF
-				echo print_r($content);
+				//echo '<pre>';print_r($content);echo '</pre>';
+				foreach($content['results'] as $line)
+				{
+					//print_r($line);
+				}
+				
 			}
 		}
 		else
@@ -229,9 +289,9 @@ available files:
 
 <?php
 
-//	if (@$res)
+	if (@$res)
 	{
-//		echo '<div>',sprintf("saved %s, failed %s lines.",$res[0],$res[1]),'</div>';
+		echo '<div>',sprintf("saved %s, failed %s lines.",$res[0],$res[1]),'</div>';
 		if (!empty($errors))
 		{
 			echo 'errors:';
