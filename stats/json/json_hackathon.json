@@ -6,7 +6,7 @@
 			country:
 			urlSearch:
 			totalOccurrences:
-			basisOfRecord:
+			basisOfRecords:
 			{
 				Specimen:
 				Fossil:
@@ -18,7 +18,7 @@
 				LiteratureOccurrence:
 				UnknownEvidence:
 			},
-			Dates:
+			dates:
 			{
 				NoDate:
 				Pre:

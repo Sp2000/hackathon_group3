@@ -14,24 +14,44 @@
 	//Get the total number of occurrences by basis of record for a specific taxonKey and a specific country
 	function getOccurrencesByBasisOfRecords($country, $taxonKey)
 	{
-		foreach ($GLOBALS["basisOfRecords"] as $basisOfRecord)
+		foreach ($GLOBALS["basisOfRecordsList"] as $basisOfRecord)
 	    {
 			$url = API."occurrence/count?country=".$country."&taxonKey=".$taxonKey."&basisOfRecord=".$basisOfRecord;
-			$output = getCurl($url);
+			$output = getCurl($url);	
+			$basisOfRecords[$basisOfRecord]= $output;
 			//$curReq = array($basisOfRecord => $requests["total"]."&basisOfRecord=" . $basisOfRecord);
 	    }
+	    return $basisOfRecords;
 	}
 
 	//Get the total number of occurrences by range of dates for a specific taxonKey and a specific country
-	function getOccurrencesByDates($country, $taxonKey){
+	function getOccurrencesByDates($country, $taxonKey, $totalOccurrences){
 		$dateMin = $GLOBALS["dateMin"];
-		while ($GLOBALS["dateMax"] > $dateMin){
-			$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
-			$output = getCurl($url);
-			$json =  json_decode($output);
-			$totalCount= $json->count;
-			$dateMin += 10;
-		}
+		//Calculation of PRE - dateMax
+		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=*%2C".$GLOBALS["dateMax"]."&limit=1";
+		$output = getCurl($url);
+		$json =  json_decode($output);
+		$dates["NoDate"] = $totalOccurrences - $json->count;
+		$dates["Pre"] = $json->count;
+		
+		$dateMin =  $GLOBALS["dateMax"]-100;
+		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
+		$output = getCurl($url);
+		$json =  json_decode($output);
+		$dates["INT_".$dateMin."-".$GLOBALS["dateMax"]] = $json->count;
+
+		$dateMin = $GLOBALS["dateMax"] - 50;
+		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
+		$output = getCurl($url);
+		$json =  json_decode($output);
+		$dates["INT_".$dateMin."-".$GLOBALS["dateMax"]] = $json->count;
+		
+		$dateMin = $GLOBALS["dateMax"] - 10;
+		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
+		$output = getCurl($url);
+		$json =  json_decode($output);
+		$dates["INT_".$dateMin."-".$GLOBALS["dateMax"]] = $json->count;
+		return $dates;
 	}
 
 
