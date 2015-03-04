@@ -1,4 +1,6 @@
 <?php
+	
+	$taxonFile = dirname(__FILE__) .'/json/taxonStats.json';
 
 	$basisOfRecords = array("HUMAN_OBSERVATION", "OBSERVATION", "PRESERVED_SPECIMEN", "UNKNOWN", "FOSSIL_SPECIMEN",  "LIVING_SPECIMEN", "MACHINE_OBSERVATION", "LITERATURE","MATERIAL_SAMPLE");
 
@@ -12,5 +14,11 @@
 	  	return curl_exec($ch);
 	}
 
-	
+	function write_file($file,$data)
+	{
+	  	$myfile = fopen($file, "w") or die("Unable to open file!");
+	  	fwrite($myfile, $data);
+	  	fclose($myfile);
+	  	echo  "Done ! [Saved in ".$file." ] \n";
+	}
 ?>
