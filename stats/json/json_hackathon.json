@@ -1,37 +1,42 @@
 {
-	taxonID:
-	country:
-	url_search:
-	total_occurrences:
-	basisOfRecord:
-	{
-		Specimen:
-		Fossil:
-		LivingSpecimen:
-		Observation:
-		HumanObservation:
-		MachineObservation:
-		MaterialSample:
-		LiteratureOccurrence:
-		UnknownEvidence:
-	}
-	
-	Dates
-	{
-		NoDate:
-		Pre:
-		INT_1900-2020:
-		INT_1910-2020:
-		INT_1920-2020:
-		INT_1930-2020:
-		INT_1940-2020:
-		INT_1950-2020:
-		INT_1960-2020:
-		INT_1970-2020:
-		INT_1980-2020:
-		INT_1990-2020:
-		INT_2000-2020:
-		INT_2010-2020:
-		
-	}
+	count:
+	result: [
+		{
+			taxonID:
+			country:
+			url_search:
+			total_occurrences:
+			basisOfRecord:
+			{
+				Specimen:
+				Fossil:
+				LivingSpecimen:
+				Observation:
+				HumanObservation:
+				MachineObservation:
+				MaterialSample:
+				LiteratureOccurrence:
+				UnknownEvidence:
+			}
+			
+			Dates
+			{
+				NoDate:
+				Pre:
+				INT_1900-2020:
+				INT_1910-2020:
+				INT_1920-2020:
+				INT_1930-2020:
+				INT_1940-2020:
+				INT_1950-2020:
+				INT_1960-2020:
+				INT_1970-2020:
+				INT_1980-2020:
+				INT_1990-2020:
+				INT_2000-2020:
+				INT_2010-2020:
+				
+			}
+		}
+	]
 }
