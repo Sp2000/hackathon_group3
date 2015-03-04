@@ -1,8 +1,8 @@
 {
 	count:
-	result: [
+	results: [
 		{
-			taxonID:
+			taxonKey:
 			country:
 			url_search:
 			total_occurrences:

@@ -19,8 +19,6 @@
 			$url = API."occurrence/count?country=".$country."&taxonKey=".$taxonKey."&basisOfRecord=".$basisOfRecord;
 			$output = getCurl($url);
 			//$curReq = array($basisOfRecord => $requests["total"]."&basisOfRecord=" . $basisOfRecord);
-			echo " ";
-			echo $basisOfRecord." - ".$output;
 	    }
 	}
 
@@ -31,8 +29,7 @@
 			$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
 			$output = getCurl($url);
 			$json =  json_decode($output);
-			echo " ";
-			echo $dateMin." - ".$json->count;
+			$totalCount= $json->count;
 			$dateMin += 10;
 		}
 	}
