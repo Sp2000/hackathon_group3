@@ -83,25 +83,28 @@
 	include_once 'includes/html-header.php';
 
 ?>
-<body>
-<p>
-<a href="index.php">index</a>
-</p>
+
+
 <h2>Upload checklist</h2>
 <form  method="post" enctype="multipart/form-data">
 <p>
-    checklist code  (for instance, "NL"):<br />
-    <input type="text" name="checklist_code" placeholder="checklist code" value="<?php echo @$code; ?>" /> * 
-	<label><input type="checkbox" name="delete_existing" /> delete existing for this checklist code</label><br />
+    checklist code (for instance, "NL"): <input type="text" name="checklist_code" placeholder="checklist code" value="<?php echo @$code; ?>" /> * <br />
+	<input type="checkbox" name="delete_existing" /> delete existing for this checklist code<br />
 </p>
 <p>
-select text file (one species per line, using: <pre>&lt;species name&lt;([TAB]&lt;species checklist code&gt;)</pre>):	
-<input class="button-secondary" type="file" name="checklist_file" id="fileToUpload" /><br />
+select text file (one record per line):	
+<input type="file" name="checklist_file" /><br />
 </p>
 <p>    or manually add checklist data (same format):<br />
-    <textarea name="checklist" style="width:1000px;height:300px" placeholder="Abacoproeces saltuum (L. Koch, 1872)	http://www.nederlandsesoorten.nl/nsr/concept/0AHCYFOOGKTT"></textarea><br />
+    <textarea name="checklist" style="width:750px;height:250px" placeholder="Abacoproeces saltuum (L. Koch, 1872)	http://www.nederlandsesoorten.nl/nsr/concept/0AHCYFOOGKTT"></textarea><br />
 </p>
-<input type="submit" value="parse" />
+<p>
+	format: <code>&lt;species name&gt;([TAB]&lt;species checklist code&gt;) (one per line)</code>
+</p>
+<p>
+<input type="submit" value="upload & save" />
+
+</p>
 </form>
 <?php
 
@@ -118,5 +121,10 @@ select text file (one species per line, using: <pre>&lt;species name&lt;([TAB]&l
 	}
 
 ?>
+
+<p>
+<a href="index.php">index</a>
+</p>
+
 </body>
 </html>

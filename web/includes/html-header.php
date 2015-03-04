@@ -2,8 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<script src="js/jquery-1.11.2.min.js"></script>
 <link href="css/stylesheet.css" media="all" rel="stylesheet" />
-
+<style>
+.paginator {
+	font-size:0.8em;
+}
+.paginator .page {
+	padding:0 5px 0 5px;
+}
+</style>
 <title>Hackathon March 2015</title>
 </head>
+<body>
+<h1 class="gh-header-title">Species 2000 Hackathon March 2015</h1>
+<div class="gh-header-meta">
+	Team 3: Matching distributions
+</div>
+<div class="markdown-body">
