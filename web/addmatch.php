@@ -446,5 +446,9 @@ file with matches of other providers:
 </p>
 
 
+<p>
+	<a href="copyright.html">license agreement</a>
+</p>
+
 </body>
 </html>

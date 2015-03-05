@@ -197,6 +197,9 @@ table, tr, th, td {
 
 ?>
 
+<p>
+	<a href="copyright.html">license agreement</a>
+</p>
 
 </body>
 </html>

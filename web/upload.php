@@ -115,6 +115,9 @@ select text file (one record per line):
 	<a href="index.php">index</a>
 </p>
 
+<p>
+	<a href="copyright.html">license agreement</a>
+</p>
 
 </body>
 </html>
