@@ -17,15 +17,26 @@
 				_a.scientific_name as _scientific_name,
 			if(count(_b.id)=0,'-','Y') as `PRESENT GBIF`,
 			if(count(_d.id)=0,'-','Y') as `PRESENT CoL`,
-				_c.basisOfRecord_HUMAN_OBSERVATION as `BoR HUMAN OBSERVATION`,
-				_c.basisOfRecord_OBSERVATION as `BoR OBSERVATION`,
-				_c.basisOfRecord_PRESERVED_SPECIMEN as `BoR PRESERVED SPECIMEN`,
-				_c.basisOfRecord_UNKNOWN as `BoR UNKNOWN`,
-				_c.basisOfRecord_FOSSIL_SPECIMEN as `BoR FOSSIL SPECIMEN`,
-				_c.basisOfRecord_LIVING_SPECIMEN as `BoR LIVING SPECIMEN`,
-				_c.basisOfRecord_MACHINE_OBSERVATION as `BoR MACHINE OBSERVATION`,
-				_c.basisOfRecord_LITERATURE as `BoR LITERATURE`,
-				_c.basisOfRecord_MATERIAL_SAMPLE as `GBBoRIF MATERIAL SAMPLE`,
+				(_c.basisOfRecord_HUMAN_OBSERVATION +
+				_c.basisOfRecord_OBSERVATION +
+				_c.basisOfRecord_PRESERVED_SPECIMEN +
+				_c.basisOfRecord_UNKNOWN +
+				_c.basisOfRecord_FOSSIL_SPECIMEN +
+				_c.basisOfRecord_LIVING_SPECIMEN +
+				_c.basisOfRecord_MACHINE_OBSERVATION +
+				_c.basisOfRecord_LITERATURE +
+				_c.basisOfRecord_MATERIAL_SAMPLE) as `TOTAL OCCURRENCES`,
+
+				_c.basisOfRecord_HUMAN_OBSERVATION as `_BoR HUMAN OBSERVATION`,
+				_c.basisOfRecord_OBSERVATION as `_BoR OBSERVATION`,
+				_c.basisOfRecord_PRESERVED_SPECIMEN as `_BoR PRESERVED SPECIMEN`,
+				_c.basisOfRecord_UNKNOWN as `_BoR UNKNOWN`,
+				_c.basisOfRecord_FOSSIL_SPECIMEN as `_BoR FOSSIL SPECIMEN`,
+				_c.basisOfRecord_LIVING_SPECIMEN as `_BoR LIVING SPECIMEN`,
+				_c.basisOfRecord_MACHINE_OBSERVATION as `_BoR MACHINE OBSERVATION`,
+				_c.basisOfRecord_LITERATURE as `_BoR LITERATURE`,
+				_c.basisOfRecord_MATERIAL_SAMPLE as `_BoRI MATERIAL SAMPLE`,
+
 				_c.date_NoDate as `no date`,
 				_c.date_All as `all dates`,
 				_c.date_1970_2020 as `1970-2020`,
