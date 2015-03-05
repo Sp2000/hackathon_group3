@@ -1,4 +1,8 @@
-<?php 
+<?php
+	//Developped by Marie-Elise Lecoq, GBIF France  during Hackathon Sp2000/GBIF - 2-5 March 2015
+	//Team : Dag Endresen (Team leader), Marie-Elise Lecoq (dev), Sophie Pamerlon (repporteur and tester), Maarten Schermer (dev), Nabil Youdjou (dev)
+	//Apache licence
+
 	define("API","http://api.gbif.org/v1/");
 
 
