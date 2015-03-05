@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+<h2> Description of files</h2>
+
+<p>
+<h3>index</h3>
+Index page listing all checklists in the database (if any). Click the name of the checklist to browse species and add matching data.
+</p>
+
+<p>
+<h3>upload</h3>
+Page for uploading new checklists. The checklist itself is identified by a code, which is replicated in each row of the 'checklist_species' table (there's
+no separate table for checklists). Lines can be added either as text pasted into a textarea, or as a prepared txt-file to be uploaded.
+</p>
+
+<p>
+<h3>browse</h3>
+Browse a specific checklist. Shows a list of all species from the selected checklist, plus matched values, if any. Matched values will either come from GBIF
+and contain several counts, based on 'basis of record' and date of observation, that indicate if and how that species occurs in the area covered by the
+checklist; or from some other data-provider, in which case the columnn will indicate a 'Y' if the species does occur in their database.
+</p>
+
+<p>
+<h3>add match</h3>
+Scans a specific directory (specified in the configuration file) for data-files. The program accepts two types of data-files: JSON-formatted data files 
+with GBIF counts (see 'incoming/taxonStats3.json' for an example), or CSV-files for other data-providers (see 'incoming/checklist_NL_taxonKey.txt' for an example).
+Both files rely on the presence of the original sourceTaxonID to match data to the entries in the uploaded checlist. The second filetype also expects the name 
+of the data-provider on the first line.
+</p>
+
+<p>
+<h4>other files and folders</h4>
+copyright.html: license agreement<br />
+readme.html: this file<br />
+checklists: & stats: scratch folders with chceklists<br />
+incoming: folder searched for match-files by 'add match'<br />
+scripts: additional script used for generation of match-files<br />
+../database.sql: database, user and table generation script (MySQL)<br />
+../db-dump.sql: database dump (to avoid long load times)
+</p>
+
+
+</body>
+</html>

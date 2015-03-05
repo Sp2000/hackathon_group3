@@ -30,12 +30,11 @@
 	</ul>
 </p>
 <p class="nav-menu">
-	<a href="upload.php">upload a checklist</a>
+	<a href="upload.php">upload a checklist</a><br />
+	<a href="copyright.html">license agreement</a><br />
+	<a href="readme.html">read me</a><br />
 </p> 
 
 </div>
-<p>
-	<a href="copyright.html">license agreement</a>
-</p>
 </body>
 </html>
