@@ -1,7 +1,7 @@
 <?php
 	
 	$taxonFile = dirname(__FILE__) .'/json/taxonStats.json';
-	$fileName = dirname(__FILE__) .'/income/__GBIF-key-test.txt';
+	$fileName = dirname(__FILE__) .'/income/checklist_outcome.txt';
 
 	$basisOfRecordsList = array("HUMAN_OBSERVATION", "OBSERVATION", "PRESERVED_SPECIMEN", "UNKNOWN", "FOSSIL_SPECIMEN",  "LIVING_SPECIMEN", "MACHINE_OBSERVATION", "LITERATURE","MATERIAL_SAMPLE");
 

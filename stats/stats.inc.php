@@ -17,7 +17,6 @@
 		foreach ($GLOBALS["basisOfRecordsList"] as $basisOfRecord)
 	    {
 			$url = API."occurrence/count?country=".$country."&taxonKey=".$taxonKey."&basisOfRecord=".$basisOfRecord;
-			echo $url."\n";
 			$output = getCurl($url);	
 			$basisOfRecords[$basisOfRecord]= $output;
 			//$curReq = array($basisOfRecord => $requests["total"]."&basisOfRecord=" . $basisOfRecord);

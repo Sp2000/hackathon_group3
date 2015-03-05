@@ -13,19 +13,22 @@
 	$taxonList=array("count"=>$n, "results"=>array());
 
 	foreach ($lines as $line_num => $line) {
-		if ($line_num >0)
-		{
-			$taxon = explode("\t", $line);
-			echo $taxon[9];
-	 		$totalOccurrences=getTotalOccurrences($taxon[9], $taxon[8]);
-		 	$urlSearch=searchEngine."?TAXON_KEY=".$taxon[8]."&COUNTRY=".$taxon[9];
-		 	$basisOfRecords= getOccurrencesByBasisOfRecords($taxon[9], $taxon[8]);
-		 	$dates=getOccurrencesByDates($taxon[9], $taxon[8], $totalOccurrences);
+		$taxon = explode("\t", $line);
+		if ($line_num == 0){
+			$scientificName = array_search("scientificName", $taxon);
+			$countryCode = array_search("countryCode", $taxon);
+			$taxonKey = array_search("taxonKey", $taxon);
+			$sourceTaxonId = array_search("sourceTaxonID", $taxon);
+		}else {
+	 		$totalOccurrences=getTotalOccurrences($taxon[$countryCode], $taxon[$taxonKey]);
+		 	$urlSearch=searchEngine."?TAXON_KEY=".$taxon[$taxonKey]."&COUNTRY=".$taxon[$countryCode];
+		 	$basisOfRecords= getOccurrencesByBasisOfRecords($taxon[$countryCode], $taxon[$taxonKey]);
+		 	$dates=getOccurrencesByDates($taxon[$countryCode], $taxon[$taxonKey], $totalOccurrences);
 
-		 	$taxons = array("taxonKey"=>$taxon[9],
-		 					"sourceTaxonId"=>$taxon[1],
-		 					"scientificName"=>$taxon[2],
-		 					"country"=>$taxon[8],
+		 	$taxons = array("taxonKey"=>$taxon[$taxonKey],
+		 					"sourceTaxonId"=>$taxon[$sourceTaxonId],
+		 					"scientificName"=>$taxon[$scientificName],
+		 					"countryCode"=>$taxon[$countryCode],
 		 					"urlSearch"=>$urlSearch,
 							"totalOccurrences"=>$totalOccurrences,
 		 					"basisOfRecords" => $basisOfRecords,
