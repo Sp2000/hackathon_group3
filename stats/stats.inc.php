@@ -32,13 +32,7 @@
 		$output = getCurl($url);
 		$json =  json_decode($output);
 		$dates["NoDate"] = $totalOccurrences - $json->count;
-		$dates["Pre"] = $json->count;
-		
-		$dateMin =  $GLOBALS["dateMax"]-100;
-		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
-		$output = getCurl($url);
-		$json =  json_decode($output);
-		$dates["INT_".$dateMin."-".$GLOBALS["dateMax"]] = $json->count;
+		$dates["All"] = $json->count;
 
 		$dateMin = $GLOBALS["dateMax"] - 50;
 		$url=API."occurrence/search?country=".$country."&taxonKey=".$taxonKey."&year=".$dateMin.",".$GLOBALS["dateMax"]."&limit=1";
