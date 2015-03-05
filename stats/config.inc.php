@@ -1,5 +1,8 @@
 <?php
-	
+	//Developped by Marie-Elise Lecoq, GBIF France  during Hackathon Sp2000/GBIF - 2-5 March 2015
+	//Team : Dag Endresen (Team leader), Marie-Elise Lecoq (dev), Sophie Pamerlon (repporteur and tester), Maarten Schermer (dev), Nabil Youdjou (dev)
+	//Apache licence
+
 	$taxonFile = dirname(__FILE__) .'/json/taxonStats.json';
 	// $fileName = dirname(__FILE__) .'/income/checklist_outcome.txt';
 	// $fileName = dirname(__FILE__) .'/income/checklist_outcome_petit.txt';
