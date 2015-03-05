@@ -393,7 +393,8 @@
 
 ?>
 <p class="nav-menu">
-	<a href="index.php">index</a>
+	<a href="index.php">index</a><br />
+	<a href="browse.php?code=<?php echo $code; ?>">back to checklist</a>
 </p>
 
 <h2>Add match data</h2>

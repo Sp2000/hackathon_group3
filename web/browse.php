@@ -121,6 +121,10 @@ table, tr, th, td {
 	text-align:right;
 }
 
+.markdown-body table tr:hover {
+	background-color:#CFF;
+}
+
 </style>
 
 <p class="nav-menu">
