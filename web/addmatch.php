@@ -399,7 +399,7 @@
 
 <h2>Add match data</h2>
 
-available files:
+available files in <?php echo INCOMING_DATA_FOLDER; ?>:
 <div class="file-list">
 <?php
 
