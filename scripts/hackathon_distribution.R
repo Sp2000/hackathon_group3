@@ -1,7 +1,7 @@
-# GBIF / Species 2000 hackathon, March 2015
-# Script created 2015-03-04 by Dag Endresen, updated 2015-03-05
+# Leiden hackathon, March 2015, GBIF and Species2000
+# Script created 2015-03-04 by Dag Endresen (CC-BY), updated 2015-03-05
 
-# INPUT: (national) checlist with at least a column "scientificName" and a column "countryCode"
+# INPUT: (national) checklist with at least a column "scientificName" and a column "countryCode"
 # Provided as tab delimited text (other formats require minor updating of this script...)
 # Other columns such as sourceTaxonId or key in the (national) checklist will be maintained
 # The order of columns here is not important.
@@ -79,10 +79,9 @@ write.table(sp, file="./checklist_taxonKey_occCounts.txt", sep="\t", col.names=N
 #############################
 ##### TEMP code for testing
 #sp <- read.delim("./checklist_NL_taxonKey.txt", header=TRUE, dec=".", stringsAsFactors=FALSE)
-sp <- read.delim("./checklist_taxonKey_occCounts.txt", header=TRUE, dec=".", stringsAsFactors=FALSE)
+#sp <- read.delim("./checklist_taxonKey_occCounts.txt", header=TRUE, dec=".", stringsAsFactors=FALSE)
 #sp <- sp[,2:11]
-#sp <- cbind(sp, data.frame(occCountNL = 0))
-#sp <- cbind(sp, data.frame(country = 'NL'))
+#sp <- cbind(sp, data.frame(countryCode = 'NL'))
 
 name_backbone(name='Abacoproeces saltuum')$speciesKey ## => 2137144
 name_backbone(name='Abacoproeces saltuum (L. Koch, 1872)')$speciesKey ## => 2137144
