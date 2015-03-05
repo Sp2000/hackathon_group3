@@ -1,7 +1,10 @@
 <?php
 	
 	$taxonFile = dirname(__FILE__) .'/json/taxonStats.json';
-	$fileName = dirname(__FILE__) .'/income/checklist_outcome.txt';
+	// $fileName = dirname(__FILE__) .'/income/checklist_outcome.txt';
+	// $fileName = dirname(__FILE__) .'/income/checklist_outcome_petit.txt';
+	// $fileName = dirname(__FILE__) .'/income/test_bcp.txt';
+	 $fileName = dirname(__FILE__) .'/income/checklist_outcome_100.txt';
 
 	$basisOfRecordsList = array("HUMAN_OBSERVATION", "OBSERVATION", "PRESERVED_SPECIMEN", "UNKNOWN", "FOSSIL_SPECIMEN",  "LIVING_SPECIMEN", "MACHINE_OBSERVATION", "LITERATURE","MATERIAL_SAMPLE");
 
