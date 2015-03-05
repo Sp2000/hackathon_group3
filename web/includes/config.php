@@ -9,7 +9,7 @@
 	define('CHECKLIST_SPECIES_ID_PREFIX','http://www.nederlandsesoorten.nl/nsr/concept/');
 	define('INCOMING_DATA_FOLDER','C:\www\hackathon2015\hackaton_group3\incoming\\');
 	
-	$ACCEPTED_PROVIDERS=['GBIF'];
+	$ACCEPTED_PROVIDERS=['GBIF','CoL'];
 
    
 

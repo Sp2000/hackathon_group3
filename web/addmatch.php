@@ -30,7 +30,7 @@
 		foreach((array)$line as $key=>$cell)
 		{
 			$cell=trim($cell,' "');
-			if ($cell=='taxonKey')
+			if ($cell=='taxonKey' || $cell=='col_taxon_id')
 			{
 				return $key;
 			}
@@ -312,10 +312,12 @@
 				$provider=extractProvider(['conn'=>$conn,'line'=>$content[0]]);
 				$keycolumn=extractKeyColumn(['conn'=>$conn,'line'=>$content[1]]);
 				
+				
+				
 				if (empty($provider))
 				{
 					$errors[]="no or illegal provider";
-				}
+				} else
 				if (empty($keycolumn))
 				{
 					$errors[]="no key";
@@ -415,13 +417,13 @@ available files:
 	if (@$res)
 	{
 		echo '<div>',sprintf("saved %s, failed %s lines.",$res[0],$res[1]),'</div>';
-		if (!empty($errors))
-		{
-			echo 'errors:';
-			echo '<pre>';
-			print_r($errors);
-			echo '</pre>';
-		}
+	}
+	if (!empty($errors))
+	{
+		echo 'errors:';
+		echo '<pre>';
+		print_r($errors);
+		echo '</pre>';
 	}
 
 ?>
